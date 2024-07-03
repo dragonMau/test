@@ -1,0 +1,13 @@
+{
+    "plot": false,           "": "// use gnuplot to show graphic or not",
+    "filename": "audio.mp3", "": "// name of audiofile",
+    "start": 0,              "": "// cut from <start> seconds",
+    "end": 3,                "": "// cut to <end> seconds",
+    "height": 32,            "": "// height of resuting image",
+    "width": 1,              "": "// width of each sample on output image ",
+    "freqR": 415.3,          "": "// frequency of red channel",
+    "freqG": 523.2,          "": "// frequency of green channel",
+    "freqB": 622.2,          "": "// frequency of blue channel",
+    "s_torq": 60.0,          "": "// loss of oscillators",
+    "iters": 1,              "": "// iterations per sample"
+}
