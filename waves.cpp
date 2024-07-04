@@ -91,10 +91,10 @@ std::vector<double> slicing(std::vector<double>& arr, int X, int Y) {
 }
 
 
-void generateColorWave(AudioData& aDataC, const std::vector<double>& powerWave, const double freqC, const int sampleRate) {
+void generateColorWave(AudioData& aDataC, const std::vector<double>& powerWave, const double freqC) {
     const size_t samplesNumber = powerWave.size();
-    std::vector<double> sinWaveC = generateSineWave(freqC, samplesNumber, sampleRate);
+    std::vector<double> sinWaveC = generateSineWave(freqC, samplesNumber, aDataC.sampleRate);
     for (size_t i = 0; i < samplesNumber; ++i) {
-        aDataC.samples[i] = powerWave[i] * sinWaveC[i];
+        aDataC.samples[i] *= powerWave[i] * sinWaveC[i];
     }
 }

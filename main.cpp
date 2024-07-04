@@ -24,6 +24,7 @@ int main() {
     const double freqB = config["freqB"];
     const double s_torq = config["s_torq"];
     const uint8_t iters = config["iters"];
+    const float volume = config["volume"];
     
     std::cout << "reading file\n";
     AudioData audio = readAudioFile(filename);
@@ -61,27 +62,26 @@ int main() {
     createImageFromRGB(forceWave, dataSets, height, width);
 
     std::cout << "genrating sound files red\n";
-    AudioData aDataR = {std::vector<double>(samplesNumber, 0.0), sampleRate};
-    generateColorWave(aDataR, resultR.power, freqR, sampleRate);
-    writeAudioFile("audio_r.wav", aDataR);
+    AudioData aDataR = {std::vector<double>(samplesNumber, volume), sampleRate};
+    generateColorWave(aDataR, resultR.power, freqR);
+    writeAudioFile("out/audio_r.wav", aDataR);
 
     std::cout << "genrating sound files green\n";
-    AudioData aDataG = {std::vector<double>(samplesNumber, 0.0), sampleRate};
-    generateColorWave(aDataG, resultG.power, freqG, sampleRate);
-    writeAudioFile("audio_g.wav", aDataG);
+    AudioData aDataG = {std::vector<double>(samplesNumber, volume), sampleRate};
+    generateColorWave(aDataG, resultG.power, freqG);
+    writeAudioFile("out/audio_g.wav", aDataG);
 
     std::cout << "genrating sound files blue\n";
-    AudioData aDataB = {std::vector<double>(samplesNumber, 0.0), sampleRate};
-    generateColorWave(aDataB, resultB.power, freqB, sampleRate);
-    writeAudioFile("audio_b.wav", aDataB);
+    AudioData aDataB = {std::vector<double>(samplesNumber, volume), sampleRate};
+    generateColorWave(aDataB, resultB.power, freqB);
+    writeAudioFile("out/audio_b.wav", aDataB);
 
     std::cout << "generating sound files white\n";
-    // std::vector<double> aWaveW(samplesNumber, 0.0);
-    AudioData aDataW = {std::vector<double>(samplesNumber, 0.0), sampleRate};
+    AudioData aDataW = {std::vector<double>(samplesNumber, volume), sampleRate};
     for (size_t i = 0; i < samplesNumber; ++i) {
-        aDataW.samples[i] = aDataR.samples[i] + aDataG.samples[i] + aDataB.samples[i];
+        aDataW.samples[i] = (aDataR.samples[i] + aDataG.samples[i] + aDataB.samples[i])/3;
     }
-    writeAudioFile("audio_w.wav", aDataW);
+    writeAudioFile("out/audio_w.wav", aDataW);
 
 
 

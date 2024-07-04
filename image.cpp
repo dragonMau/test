@@ -42,6 +42,6 @@ void createImageFromRGB(const std::vector<double>& wave, const std::vector<std::
         } while (k < height);
     }
 
-    cv::imwrite("output_image.png", image);
+    cv::imwrite("out/output_image.png", image);
 }
 
